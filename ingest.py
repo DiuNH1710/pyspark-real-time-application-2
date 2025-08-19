@@ -24,7 +24,7 @@ def load_files (spark, file_dir,file_format, header, inferSchema):
 
 def display_df(df, dfName):
     df_show = df.show()
-    return  df_show
+    return df_show
 
 def df_count(df, dfName):
     try:

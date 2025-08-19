@@ -47,18 +47,22 @@ def data_clean(df1, df2):
         df_presc_sel = df_presc_sel.drop('presc_lname', 'presc_fname')
 
         loggers.warning("check for null values in all columns")
-        df_presc_sel = df_presc_sel.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df_presc_sel.columns])
+        # df_presc_sel = df_presc_sel.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df_presc_sel.columns])
 
         loggers.warning("drop the null values in the respective columns")
 
         df_presc_sel = df_presc_sel.dropna(subset='presc_id')
         df_presc_sel = df_presc_sel.dropna(subset='drug_name')
 
+        loggers.warning("fill the null values in tx_cnt with avg value")
+        mean_tx_cnt = df_presc_sel.select(mean(col('tx_cnt'))).collect()[0][0]
+        df_presc_sel = df_presc_sel.fillna(mean_tx_cnt, 'tx_cnt')
+
         loggers.warning("successfully droped the null values... ")
 
-        df_presc_sel = df_presc_sel.select(
-            [count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df_presc_sel.columns]
-        )
+        # df_presc_sel = df_presc_sel.select(
+        #     [count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df_presc_sel.columns]
+        # )
 
     except Exception as exp:
         loggers.error("An error occured at data_clean() method===", str(exp))

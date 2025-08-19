@@ -1,4 +1,5 @@
 import logging.config
+from pyspark.sql.functions import *
 logging.config.fileConfig('Properties/configuration/logging.config')
 
 loggers = logging.getLogger('Validate')
@@ -33,3 +34,14 @@ def print_schema(df, dfName):
         loggers.info("print_schema done, go frwd...")
 
 
+def check_for_nulls(df, dfName):
+    try:
+        loggers.info("check for null method executing ... for {}".format(dfName))
+
+        check_null_df = df.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df.columns])
+
+    except Exception as e:
+        loggers.error("An error occur while working on check_for_nulls===", str(e))
+    else:
+        loggers.warning("check for null executed successfully...")
+    return check_null_df

@@ -3,9 +3,10 @@ import sys
 
 import get_env_variables as gav
 from create_spark import get_spark_object
-from validate import get_current_date, print_schema
+from validate import get_current_date, print_schema, check_for_nulls
 from ingest import load_files, display_df, df_count
 from data_processing import *
+from data_transformation import *
 import logging
 import logging.config
 
@@ -80,14 +81,20 @@ def main():
         print_schema(df_city_sel, 'df_city_sel')
         print_schema(df_presc_sel, 'df_presc_sel')
 
+        logging.info('checking for null values... ')
+        check_df = check_for_nulls(df_presc_sel, 'df_fact')
+        display_df(check_df, 'df_fact')
 
+        logging.info('data transformation execute...')
 
-
+        df_report_1 = data_report1(df_city_sel, df_presc_sel)
+        logging.info('display the df_report_1')
+        display_df(df_report_1, 'data_report')
 
 
 
     except Exception as exp:
-        logging.error("An error occured when calling main() please check the trace === ", str(exp))
+        logging.error("An error occured when calling main() please check the trace === %s", str(exp))
         sys.exit(1)
 
 if __name__ == '__main__':
