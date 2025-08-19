@@ -56,7 +56,9 @@ def data_clean(df1, df2):
 
         loggers.warning("successfully droped the null values... ")
 
-
+        df_presc_sel = df_presc_sel.select(
+            [count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in df_presc_sel.columns]
+        )
 
     except Exception as exp:
         loggers.error("An error occured at data_clean() method===", str(exp))

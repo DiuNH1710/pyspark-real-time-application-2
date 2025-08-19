@@ -522,3 +522,229 @@
 2025-08-19 00:08:37,224 - Validate - INFO - 	StructField('presc_fullname', LongType(), False)
 2025-08-19 00:08:37,224 - Validate - INFO - print_schema done, go frwd...
 2025-08-19 00:08:37,224 - root - INFO - Application done
+2025-08-19 09:28:18,365 - root - INFO - i am in the main method
+2025-08-19 09:28:18,365 - root - INFO - calling spark object
+2025-08-19 09:28:18,365 - Create_spark - INFO - get_spark_object method started
+2025-08-19 09:28:18,365 - Create_spark - INFO - master is local
+2025-08-19 09:28:23,939 - Create_spark - INFO - Spark object created ...
+2025-08-19 09:28:23,939 - root - INFO - Validating spark object...
+2025-08-19 09:28:23,939 - Validate - WARNING - started the get_current_date method...
+2025-08-19 09:28:28,572 - Validate - WARNING - validating spark object with current date -[Row(current_date()=datetime.date(2025, 8, 19))]
+2025-08-19 09:28:28,572 - Validate - WARNING - Validation done, go frwd... 
+2025-08-19 09:28:28,573 - root - INFO - reading file which is of > parquet 
+2025-08-19 09:28:28,573 - Ingest - WARNING - load_files method started...
+2025-08-19 09:28:29,282 - Ingest - WARNING - dataframe created successfully which is of parquet
+2025-08-19 09:28:29,286 - root - INFO - displaying the dataframe DataFrame[city: string, city_ascii: string, state_id: string, state_name: string, county_fips: int, county_name: string, lat: double, lng: double, population: int, density: int, timezone: string, zips: string]
+2025-08-19 09:28:31,149 - root - INFO - validating the dataframe...
+2025-08-19 09:28:31,149 - Ingest - WARNING - here to count the records in the df_city
+2025-08-19 09:28:31,808 - Ingest - WARNING - Number of records present in the df_city are :: 28338 
+2025-08-19 09:28:31,809 - Ingest - WARNING - load_files method started...
+2025-08-19 09:28:35,643 - Ingest - WARNING - dataframe created successfully which is of csv
+2025-08-19 09:28:35,645 - root - INFO - display the dataframe DataFrame[npi: int, nppes_provider_last_org_name: string, nppes_provider_first_name: string, nppes_provider_city: string, nppes_provider_state: string, specialty_description: string, description_flag: string, drug_name: string, generic_name: string, bene_count: int, total_claim_count: int, total_30_day_fill_count: double, total_day_supply: int, total_drug_cost: double, bene_count_ge65: int, bene_count_ge65_suppress_flag: string, total_claim_count_ge65: int, ge65_suppress_flag: string, total_30_day_fill_count_ge65: double, total_day_supply_ge65: int, total_drug_cost_ge65: double, years_of_exp: string]
+2025-08-19 09:28:35,849 - root - INFO - validating the dataframe...
+2025-08-19 09:28:35,849 - Ingest - WARNING - here to count the records in the df_fact
+2025-08-19 09:28:36,577 - Ingest - WARNING - Number of records present in the df_fact are :: 1329329 
+2025-08-19 09:28:36,578 - root - INFO - implementing data_processing methods...
+2025-08-19 09:28:36,578 - Data_processing - WARNING - data_clean method() started...
+2025-08-19 09:28:36,578 - Data_processing - WARNING - select required columns and converting some of columns into upper case..
+2025-08-19 09:28:36,611 - Data_processing - WARNING - working on OLTP dataset and selecting couple of  columns and rename...
+2025-08-19 09:28:36,628 - Data_processing - WARNING - Adding a new column to df_presc_sel
+2025-08-19 09:28:36,640 - Data_processing - WARNING - converting Year_of_exp string to Int and replacing = 
+2025-08-19 09:28:36,674 - Data_processing - WARNING - concat first and lname
+2025-08-19 09:28:36,695 - Data_processing - WARNING - now dropping presc_lname and presc_fname
+2025-08-19 09:28:36,705 - Data_processing - WARNING - check for null values in all columns
+2025-08-19 09:28:36,833 - Data_processing - WARNING - drop the null values in the respective columns
+2025-08-19 09:28:36,855 - Data_processing - WARNING - successfully droped the null values... 
+2025-08-19 09:28:36,855 - Data_processing - WARNING - data_clean() method executed done, go frwd...
+2025-08-19 09:28:51,644 - root - INFO - validating schema for the dataframes...
+2025-08-19 09:28:51,644 - Validate - WARNING - print schema method executing ...df_city_sel
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('city', StringType(), True)
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('state_id', StringType(), True)
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('state_name', StringType(), True)
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('county_name', StringType(), True)
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('population', IntegerType(), True)
+2025-08-19 09:28:51,646 - Validate - INFO - 	StructField('zips', StringType(), True)
+2025-08-19 09:28:51,647 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:28:51,647 - Validate - WARNING - print schema method executing ...df_presc_sel
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('presc_id', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('presc_city', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('presc_state', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('presc_spclt', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('drug_name', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('tx_cnt', LongType(), False)
+2025-08-19 09:28:51,648 - Validate - INFO - 	StructField('total_day_supply', LongType(), False)
+2025-08-19 09:28:51,649 - Validate - INFO - 	StructField('total_drug_cost', LongType(), False)
+2025-08-19 09:28:51,649 - Validate - INFO - 	StructField('years_of_exp', LongType(), False)
+2025-08-19 09:28:51,649 - Validate - INFO - 	StructField('Country_name', LongType(), False)
+2025-08-19 09:28:51,649 - Validate - INFO - 	StructField('presc_fullname', LongType(), False)
+2025-08-19 09:28:51,649 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:28:51,649 - root - INFO - Application done
+2025-08-19 09:31:20,518 - root - INFO - i am in the main method
+2025-08-19 09:31:20,518 - root - INFO - calling spark object
+2025-08-19 09:31:20,518 - Create_spark - INFO - get_spark_object method started
+2025-08-19 09:31:20,518 - Create_spark - INFO - master is local
+2025-08-19 09:31:24,834 - Create_spark - INFO - Spark object created ...
+2025-08-19 09:31:24,834 - root - INFO - Validating spark object...
+2025-08-19 09:31:24,834 - Validate - WARNING - started the get_current_date method...
+2025-08-19 09:31:28,549 - Validate - WARNING - validating spark object with current date -[Row(current_date()=datetime.date(2025, 8, 19))]
+2025-08-19 09:31:28,549 - Validate - WARNING - Validation done, go frwd... 
+2025-08-19 09:31:28,549 - root - INFO - reading file which is of > parquet 
+2025-08-19 09:31:28,549 - Ingest - WARNING - load_files method started...
+2025-08-19 09:31:29,115 - Ingest - WARNING - dataframe created successfully which is of parquet
+2025-08-19 09:31:29,119 - root - INFO - displaying the dataframe DataFrame[city: string, city_ascii: string, state_id: string, state_name: string, county_fips: int, county_name: string, lat: double, lng: double, population: int, density: int, timezone: string, zips: string]
+2025-08-19 09:31:30,847 - root - INFO - validating the dataframe...
+2025-08-19 09:31:30,847 - Ingest - WARNING - here to count the records in the df_city
+2025-08-19 09:31:31,317 - Ingest - WARNING - Number of records present in the df_city are :: 28338 
+2025-08-19 09:31:31,318 - Ingest - WARNING - load_files method started...
+2025-08-19 09:31:34,995 - Ingest - WARNING - dataframe created successfully which is of csv
+2025-08-19 09:31:34,997 - root - INFO - display the dataframe DataFrame[npi: int, nppes_provider_last_org_name: string, nppes_provider_first_name: string, nppes_provider_city: string, nppes_provider_state: string, specialty_description: string, description_flag: string, drug_name: string, generic_name: string, bene_count: int, total_claim_count: int, total_30_day_fill_count: double, total_day_supply: int, total_drug_cost: double, bene_count_ge65: int, bene_count_ge65_suppress_flag: string, total_claim_count_ge65: int, ge65_suppress_flag: string, total_30_day_fill_count_ge65: double, total_day_supply_ge65: int, total_drug_cost_ge65: double, years_of_exp: string]
+2025-08-19 09:31:35,244 - root - INFO - validating the dataframe...
+2025-08-19 09:31:35,244 - Ingest - WARNING - here to count the records in the df_fact
+2025-08-19 09:31:35,909 - Ingest - WARNING - Number of records present in the df_fact are :: 1329329 
+2025-08-19 09:31:35,909 - root - INFO - implementing data_processing methods...
+2025-08-19 09:31:35,909 - Data_processing - WARNING - data_clean method() started...
+2025-08-19 09:31:35,909 - Data_processing - WARNING - select required columns and converting some of columns into upper case..
+2025-08-19 09:31:35,941 - Data_processing - WARNING - working on OLTP dataset and selecting couple of  columns and rename...
+2025-08-19 09:31:35,958 - Data_processing - WARNING - Adding a new column to df_presc_sel
+2025-08-19 09:31:35,967 - Data_processing - WARNING - converting Year_of_exp string to Int and replacing = 
+2025-08-19 09:31:36,007 - Data_processing - WARNING - concat first and lname
+2025-08-19 09:31:36,025 - Data_processing - WARNING - now dropping presc_lname and presc_fname
+2025-08-19 09:31:36,034 - Data_processing - WARNING - check for null values in all columns
+2025-08-19 09:31:36,191 - Data_processing - WARNING - drop the null values in the respective columns
+2025-08-19 09:31:36,220 - Data_processing - WARNING - successfully droped the null values... 
+2025-08-19 09:31:51,811 - root - INFO - validating schema for the dataframes...
+2025-08-19 09:31:51,811 - Validate - WARNING - print schema method executing ...df_city_sel
+2025-08-19 09:31:51,812 - Validate - INFO - 	StructField('city', StringType(), True)
+2025-08-19 09:31:51,812 - Validate - INFO - 	StructField('state_id', StringType(), True)
+2025-08-19 09:31:51,812 - Validate - INFO - 	StructField('state_name', StringType(), True)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('county_name', StringType(), True)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('population', IntegerType(), True)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('zips', StringType(), True)
+2025-08-19 09:31:51,813 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:31:51,813 - Validate - WARNING - print schema method executing ...df_presc_sel
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('presc_id', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('presc_city', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('presc_state', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('presc_spclt', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('drug_name', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('tx_cnt', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('total_day_supply', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('total_drug_cost', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('years_of_exp', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('Country_name', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - 	StructField('presc_fullname', LongType(), False)
+2025-08-19 09:31:51,813 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:31:51,813 - root - INFO - Application done
+2025-08-19 09:34:30,277 - root - INFO - i am in the main method
+2025-08-19 09:34:30,277 - root - INFO - calling spark object
+2025-08-19 09:34:30,277 - Create_spark - INFO - get_spark_object method started
+2025-08-19 09:34:30,277 - Create_spark - INFO - master is local
+2025-08-19 09:34:34,754 - Create_spark - INFO - Spark object created ...
+2025-08-19 09:34:34,754 - root - INFO - Validating spark object...
+2025-08-19 09:34:34,754 - Validate - WARNING - started the get_current_date method...
+2025-08-19 09:34:38,733 - Validate - WARNING - validating spark object with current date -[Row(current_date()=datetime.date(2025, 8, 19))]
+2025-08-19 09:34:38,733 - Validate - WARNING - Validation done, go frwd... 
+2025-08-19 09:34:38,733 - root - INFO - reading file which is of > parquet 
+2025-08-19 09:34:38,733 - Ingest - WARNING - load_files method started...
+2025-08-19 09:34:39,283 - Ingest - WARNING - dataframe created successfully which is of parquet
+2025-08-19 09:34:39,288 - root - INFO - displaying the dataframe DataFrame[city: string, city_ascii: string, state_id: string, state_name: string, county_fips: int, county_name: string, lat: double, lng: double, population: int, density: int, timezone: string, zips: string]
+2025-08-19 09:34:41,064 - root - INFO - validating the dataframe...
+2025-08-19 09:34:41,064 - Ingest - WARNING - here to count the records in the df_city
+2025-08-19 09:34:41,675 - Ingest - WARNING - Number of records present in the df_city are :: 28338 
+2025-08-19 09:34:41,675 - Ingest - WARNING - load_files method started...
+2025-08-19 09:34:45,900 - Ingest - WARNING - dataframe created successfully which is of csv
+2025-08-19 09:34:45,902 - root - INFO - display the dataframe DataFrame[npi: int, nppes_provider_last_org_name: string, nppes_provider_first_name: string, nppes_provider_city: string, nppes_provider_state: string, specialty_description: string, description_flag: string, drug_name: string, generic_name: string, bene_count: int, total_claim_count: int, total_30_day_fill_count: double, total_day_supply: int, total_drug_cost: double, bene_count_ge65: int, bene_count_ge65_suppress_flag: string, total_claim_count_ge65: int, ge65_suppress_flag: string, total_30_day_fill_count_ge65: double, total_day_supply_ge65: int, total_drug_cost_ge65: double, years_of_exp: string]
+2025-08-19 09:34:46,094 - root - INFO - validating the dataframe...
+2025-08-19 09:34:46,094 - Ingest - WARNING - here to count the records in the df_fact
+2025-08-19 09:34:46,782 - Ingest - WARNING - Number of records present in the df_fact are :: 1329329 
+2025-08-19 09:34:46,782 - root - INFO - implementing data_processing methods...
+2025-08-19 09:34:46,782 - Data_processing - WARNING - data_clean method() started...
+2025-08-19 09:34:46,783 - Data_processing - WARNING - select required columns and converting some of columns into upper case..
+2025-08-19 09:34:46,815 - Data_processing - WARNING - working on OLTP dataset and selecting couple of  columns and rename...
+2025-08-19 09:34:46,830 - Data_processing - WARNING - Adding a new column to df_presc_sel
+2025-08-19 09:34:46,841 - Data_processing - WARNING - converting Year_of_exp string to Int and replacing = 
+2025-08-19 09:34:46,873 - Data_processing - WARNING - concat first and lname
+2025-08-19 09:34:46,892 - Data_processing - WARNING - now dropping presc_lname and presc_fname
+2025-08-19 09:34:46,900 - Data_processing - WARNING - check for null values in all columns
+2025-08-19 09:34:47,048 - Data_processing - WARNING - drop the null values in the respective columns
+2025-08-19 09:34:47,071 - Data_processing - WARNING - successfully droped the null values... 
+2025-08-19 09:35:02,426 - root - INFO - validating schema for the dataframes...
+2025-08-19 09:35:02,427 - Validate - WARNING - print schema method executing ...df_city_sel
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('city', StringType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('state_id', StringType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('state_name', StringType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('county_name', StringType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('population', IntegerType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('zips', StringType(), True)
+2025-08-19 09:35:02,428 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:35:02,428 - Validate - WARNING - print schema method executing ...df_presc_sel
+2025-08-19 09:35:02,428 - Validate - INFO - 	StructField('presc_id', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('presc_city', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('presc_state', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('presc_spclt', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('drug_name', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('tx_cnt', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('total_day_supply', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('total_drug_cost', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('years_of_exp', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('Country_name', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - 	StructField('presc_fullname', LongType(), False)
+2025-08-19 09:35:02,429 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:35:02,429 - root - INFO - Application done
+2025-08-19 09:37:14,050 - root - INFO - i am in the main method
+2025-08-19 09:37:14,050 - root - INFO - calling spark object
+2025-08-19 09:37:14,050 - Create_spark - INFO - get_spark_object method started
+2025-08-19 09:37:14,050 - Create_spark - INFO - master is local
+2025-08-19 09:37:18,145 - Create_spark - INFO - Spark object created ...
+2025-08-19 09:37:18,145 - root - INFO - Validating spark object...
+2025-08-19 09:37:18,145 - Validate - WARNING - started the get_current_date method...
+2025-08-19 09:37:21,449 - Validate - WARNING - validating spark object with current date -[Row(current_date()=datetime.date(2025, 8, 19))]
+2025-08-19 09:37:21,449 - Validate - WARNING - Validation done, go frwd... 
+2025-08-19 09:37:21,449 - root - INFO - reading file which is of > parquet 
+2025-08-19 09:37:21,449 - Ingest - WARNING - load_files method started...
+2025-08-19 09:37:21,995 - Ingest - WARNING - dataframe created successfully which is of parquet
+2025-08-19 09:37:21,999 - root - INFO - displaying the dataframe DataFrame[city: string, city_ascii: string, state_id: string, state_name: string, county_fips: int, county_name: string, lat: double, lng: double, population: int, density: int, timezone: string, zips: string]
+2025-08-19 09:37:23,667 - root - INFO - validating the dataframe...
+2025-08-19 09:37:23,667 - Ingest - WARNING - here to count the records in the df_city
+2025-08-19 09:37:24,183 - Ingest - WARNING - Number of records present in the df_city are :: 28338 
+2025-08-19 09:37:24,183 - Ingest - WARNING - load_files method started...
+2025-08-19 09:37:27,924 - Ingest - WARNING - dataframe created successfully which is of csv
+2025-08-19 09:37:27,926 - root - INFO - display the dataframe DataFrame[npi: int, nppes_provider_last_org_name: string, nppes_provider_first_name: string, nppes_provider_city: string, nppes_provider_state: string, specialty_description: string, description_flag: string, drug_name: string, generic_name: string, bene_count: int, total_claim_count: int, total_30_day_fill_count: double, total_day_supply: int, total_drug_cost: double, bene_count_ge65: int, bene_count_ge65_suppress_flag: string, total_claim_count_ge65: int, ge65_suppress_flag: string, total_30_day_fill_count_ge65: double, total_day_supply_ge65: int, total_drug_cost_ge65: double, years_of_exp: string]
+2025-08-19 09:37:28,116 - root - INFO - validating the dataframe...
+2025-08-19 09:37:28,116 - Ingest - WARNING - here to count the records in the df_fact
+2025-08-19 09:37:28,798 - Ingest - WARNING - Number of records present in the df_fact are :: 1329329 
+2025-08-19 09:37:28,799 - root - INFO - implementing data_processing methods...
+2025-08-19 09:37:28,799 - Data_processing - WARNING - data_clean method() started...
+2025-08-19 09:37:28,799 - Data_processing - WARNING - select required columns and converting some of columns into upper case..
+2025-08-19 09:37:28,832 - Data_processing - WARNING - working on OLTP dataset and selecting couple of  columns and rename...
+2025-08-19 09:37:28,848 - Data_processing - WARNING - Adding a new column to df_presc_sel
+2025-08-19 09:37:28,859 - Data_processing - WARNING - converting Year_of_exp string to Int and replacing = 
+2025-08-19 09:37:28,888 - Data_processing - WARNING - concat first and lname
+2025-08-19 09:37:28,903 - Data_processing - WARNING - now dropping presc_lname and presc_fname
+2025-08-19 09:37:28,911 - Data_processing - WARNING - check for null values in all columns
+2025-08-19 09:37:29,030 - Data_processing - WARNING - drop the null values in the respective columns
+2025-08-19 09:37:29,050 - Data_processing - WARNING - successfully droped the null values... 
+2025-08-19 09:37:29,154 - Data_processing - WARNING - data_clean() method executed done, go frwd...
+2025-08-19 09:37:44,650 - root - INFO - validating schema for the dataframes...
+2025-08-19 09:37:44,650 - Validate - WARNING - print schema method executing ...df_city_sel
+2025-08-19 09:37:44,651 - Validate - INFO - 	StructField('city', StringType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - 	StructField('state_id', StringType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - 	StructField('state_name', StringType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - 	StructField('county_name', StringType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - 	StructField('population', IntegerType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - 	StructField('zips', StringType(), True)
+2025-08-19 09:37:44,652 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:37:44,652 - Validate - WARNING - print schema method executing ...df_presc_sel
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('presc_id', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('presc_city', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('presc_state', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('presc_spclt', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('drug_name', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('tx_cnt', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('total_day_supply', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('total_drug_cost', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('years_of_exp', LongType(), False)
+2025-08-19 09:37:44,654 - Validate - INFO - 	StructField('Country_name', LongType(), False)
+2025-08-19 09:37:44,655 - Validate - INFO - 	StructField('presc_fullname', LongType(), False)
+2025-08-19 09:37:44,655 - Validate - INFO - print_schema done, go frwd...
+2025-08-19 09:37:44,655 - root - INFO - Application done
